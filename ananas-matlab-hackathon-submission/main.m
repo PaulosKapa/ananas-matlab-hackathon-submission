@@ -1,3 +1,4 @@
+function steps = main()
 lat = Position.latitude;
 lon = Position.longitude;
 peaks = Acceleration.Z;
@@ -21,6 +22,7 @@ for i = 2:length(peaks)
 
 end
 
-steps_acc
-total_distance = distance(lat, lon, earthCirc)*1000
+steps_acc;
+total_distance = distance(lat, lon, earthCirc)*1000;
 steps = round((total_distance)/gait)
+end
