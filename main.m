@@ -1,5 +1,5 @@
-function steps = main(filename, height, weight, age)
-load(filename);
+function steps = main(height, weight, age)
+load("final1.mat");
 load('gaitModel.mat', 'gaitModel');
 
 
