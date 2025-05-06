@@ -1,5 +1,8 @@
-function steps = main(filename)
+function steps = main(filename, height, weight, age)
 load(filename);
+load('gaitModel.mat', 'gaitModel');
+
+
 
     % Assuming your .mat file contains a variable named "data"
 
@@ -10,9 +13,7 @@ steps_acc = 0;
 average = mean(peaks);
 earthCirc = 6371 ;
 total_distance = 0;
-%calculate gait based on height
-height = input("Height in cm: ");
-gait = height/100*0.414;
+gait = predict(gaitModel, table(height, weight, age, 'VariableNames', {'Height', 'Weight', 'Age'}));
 % calculate steps based an accelerometer activity (for reference)
 
 for i = 2:length(peaks)
@@ -27,7 +28,8 @@ for i = 2:length(peaks)
 end
 
 
-steps_acc;
+
 total_distance = distance(lat, lon, earthCirc)*1000;
 steps = round((total_distance)/gait)
+save("steps.mat", "steps")
 end
